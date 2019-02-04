@@ -3,38 +3,27 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      amount: 0,
-      showValue: 0,
-      currency_value: 0,
-      currencies: []
-    }
-
-    this.valueChange = this.valueChange.bind(this);
-    this.currencyChange = this.currencyChange.bind(this);
+  state = {
+    amount: 0,
+    showValue: 0,
+    currency_value: 0,
+    currencies: []
   }
 
   componentDidMount() {
     fetch('http://data.fixer.io/api/latest?access_key=7eab651ae063a666e85ece879ba3ad31')
       .then(results => results.json())
       .then(data => {
-
         console.log(data.rates)
-
         this.setState({ currencies: data.rates })
       })
-
-
-
   }
 
-  valueChange(event) {
+  valueChange = (event) => {
     this.setState({ amount: event.target.value })
   }
 
-  currencyChange(event) {
+  currencyChange = (event) => {
 
     this.setState({ currency_value: event.target.value });
 
